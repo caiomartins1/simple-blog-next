@@ -1,9 +1,7 @@
 import PostCard from '@/components/PostCard';
 import { NextPage } from 'next';
 
-interface Props {}
-
-const Posts: NextPage<Props> = () => {
+const Posts: NextPage = () => {
   return (
     <div className="p-5 max-w-3xl mx-auto space-y-5">
       <PostCard
