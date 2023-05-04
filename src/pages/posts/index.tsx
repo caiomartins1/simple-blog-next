@@ -1,22 +1,14 @@
 import PostCard from '@/components/PostCard';
+import { readPostsInfo } from '@/lib/files';
+import { Post } from '@/shared/types/post';
 import { InferGetStaticPropsType, NextPage } from 'next';
 
-type Post = {
-  id: string;
-  title: string;
-  meta: string;
-  slug: string;
-};
-
-interface PostsApiResponse {
-  posts: Post[];
-}
-
 export const getStaticProps = async () => {
-  const { posts }: PostsApiResponse = await fetch(
-    'http://localhost:3000/api/posts',
-  ).then((data) => data.json());
+  // const { posts }: PostsApiResponse = await fetch(
+  //   'http://localhost:3000/api/posts',
+  // ).then((data) => data.json());
 
+  const posts: Post[] = readPostsInfo();
   return {
     props: { posts },
   };

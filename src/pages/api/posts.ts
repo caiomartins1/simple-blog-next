@@ -1,9 +1,5 @@
 import { NextApiHandler } from 'next';
-import fs from 'fs';
-import path from 'path';
-
-import matter from 'gray-matter';
-import { randomUUID } from 'crypto';
+import { readPostsInfo } from '@/lib/files';
 
 const handler: NextApiHandler = (req, res) => {
   const { method } = req;
@@ -17,18 +13,6 @@ const handler: NextApiHandler = (req, res) => {
     default:
       res.status(404).send('Not Found');
   }
-};
-
-const readPostsInfo = () => {
-  const postsFolder = path.join(process.cwd(), 'src', 'posts');
-  const fileNames = fs.readdirSync(postsFolder);
-
-  return fileNames.map((fileName) => {
-    const filePath = path.join(postsFolder, fileName);
-    const fileContent = fs.readFileSync(filePath, { encoding: 'utf-8' });
-    const metadata = matter(fileContent);
-    return { ...metadata.data, id: randomUUID() };
-  });
 };
 
 export default handler;
