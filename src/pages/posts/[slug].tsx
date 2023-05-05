@@ -50,24 +50,30 @@ type PostResponse = {
 };
 
 export const getStaticProps: GetStaticProps<PostResponse> = async (ctx) => {
-  const { params } = ctx;
-  const { slug } = params as IStaticProps;
+  try {
+    const { params } = ctx;
+    const { slug } = params as IStaticProps;
 
-  const postsFolder = path.join(process.cwd(), 'src', 'posts');
-  const filePath = path.join(postsFolder, `${slug}.md`);
-  const fileContent = fs.readFileSync(filePath, { encoding: 'utf-8' });
+    const postsFolder = path.join(process.cwd(), 'src', 'posts');
+    const filePath = path.join(postsFolder, `${slug}.md`);
+    const fileContent = fs.readFileSync(filePath, { encoding: 'utf-8' });
 
-  const source: any = await serialize(fileContent, {
-    parseFrontmatter: true,
-  });
-  return {
-    props: {
-      post: {
-        content: source,
-        title: source.frontmatter.title,
+    const source: any = await serialize(fileContent, {
+      parseFrontmatter: true,
+    });
+    return {
+      props: {
+        post: {
+          content: source,
+          title: source.frontmatter.title,
+        },
       },
-    },
-  };
+    };
+  } catch (error) {
+    return {
+      notFound: true,
+    };
+  }
 };
 
 export default Post;
