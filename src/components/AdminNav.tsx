@@ -1,5 +1,5 @@
-import { FC, useEffect, useState } from "react";
-import Link from "next/link";
+import { FC, useEffect, useState } from 'react';
+import Link from 'next/link';
 import {
   EnvelopeSimple,
   Gauge,
@@ -7,18 +7,18 @@ import {
   TerminalWindow,
   Tray,
   Users,
-} from "phosphor-react";
+} from 'phosphor-react';
 
 const AdminNav: FC = () => {
   const [visible, setVisible] = useState(true);
 
   const toggleNav = () => {
     setVisible(!visible);
-    localStorage.setItem("nav-visibility", JSON.stringify(!visible));
+    localStorage.setItem('nav-visibility', JSON.stringify(!visible));
   };
 
   useEffect(() => {
-    const visibility = localStorage.getItem("nav-visibility");
+    const visibility = localStorage.getItem('nav-visibility');
 
     if (visibility) {
       setVisible(JSON.parse(visibility));
@@ -29,11 +29,12 @@ const AdminNav: FC = () => {
 
   return (
     <nav
-      className={`h-screen ${visible ? "w-60" : "w-12"
-        } bg-gray-200 dark:bg-gray-600 shadow-sm flex flex-col justify-between transition-width overflow-hidden`}
+      className={`h-screen ${
+        visible ? 'w-60' : 'w-12'
+      }  bg-gray-200 dark:bg-gray-600 shadow-sm flex flex-col justify-between transition-width overflow-hidden`}
     >
       <div>
-        <Link href={"/admin"} className="flex items-center space-x-2 p-3 mb-10">
+        <Link href={'/admin'} className="flex items-center space-x-2 p-3 mb-10">
           <TerminalWindow
             size={32}
             className="dark:text-slate-100 text-gray-600"
@@ -47,7 +48,7 @@ const AdminNav: FC = () => {
 
         <div>
           <Link
-            href={"/admin"}
+            href={'/admin'}
             className="
             flex
             items-center text-base dark:text-slate-100 text-gray-600 hover:scale-[0.98] transition p-3
@@ -58,7 +59,7 @@ const AdminNav: FC = () => {
           </Link>
 
           <Link
-            href={"/admin/posts"}
+            href={'/admin/posts'}
             className="
             flex
             items-center text-base dark:text-slate-100 text-gray-600 hover:scale-[0.98] transition p-3
@@ -69,7 +70,7 @@ const AdminNav: FC = () => {
           </Link>
 
           <Link
-            href={"/admin/users"}
+            href={'/admin/users'}
             className="
             flex
             items-center text-base dark:text-slate-100 text-gray-600 hover:scale-[0.98] transition p-3
@@ -80,7 +81,7 @@ const AdminNav: FC = () => {
           </Link>
 
           <Link
-            href={"/admin/comments"}
+            href={'/admin/comments'}
             className="
             flex
             items-center text-base dark:text-slate-100 text-gray-600 hover:scale-[0.98] transition p-3

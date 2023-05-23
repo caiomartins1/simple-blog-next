@@ -1,11 +1,12 @@
-import AdminNav from "@/components/AdminNav";
-import { NextPage } from "next";
+import AdminNav from '@/components/AdminNav';
+import AdminLayout from '@/layouts/AdminLayout';
+import { NextPage } from 'next';
 
 const AdminPage: NextPage = () => {
   return (
-    <div className="">
-      <AdminNav />
-    </div>
+    <AdminLayout>
+      <p>oi</p>
+    </AdminLayout>
   );
 };
 export default AdminPage;
